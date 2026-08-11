@@ -1325,7 +1325,7 @@
   },
   "207": {
     "inputs": {
-      "text": "红包",
+      "text": "{{ROW_THEME}}",
       "speak_and_recognation": {
         "__value__": [
           false,
