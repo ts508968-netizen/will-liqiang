@@ -1,0 +1,2096 @@
+{
+  "16": {
+    "inputs": {
+      "invert_mask": true,
+      "blend_mode": "normal",
+      "opacity": 100,
+      "x_percent": 50,
+      "y_percent": 50,
+      "mirror": "None",
+      "scale": 1,
+      "aspect_ratio": 1,
+      "rotate": 0,
+      "transform_method": "lanczos",
+      "anti_aliasing": 0,
+      "background_image": [
+        "27",
+        0
+      ],
+      "layer_image": [
+        "109",
+        0
+      ],
+      "layer_mask": [
+        "111",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: ImageBlendAdvance",
+    "_meta": {
+      "title": "混合(高级)"
+    }
+  },
+  "17": {
+    "inputs": {
+      "image": "heima_864/load_17.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "18": {
+    "inputs": {
+      "image": "heima_864/load_18.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "20": {
+    "inputs": {
+      "invert_mask": true,
+      "blend_mode": "normal",
+      "opacity": 100,
+      "x_percent": 50,
+      "y_percent": 50,
+      "mirror": "None",
+      "scale": 1,
+      "aspect_ratio": 1,
+      "rotate": 0,
+      "transform_method": "lanczos",
+      "anti_aliasing": 0,
+      "background_image": [
+        "16",
+        0
+      ],
+      "layer_image": [
+        "18",
+        0
+      ],
+      "layer_mask": [
+        "18",
+        1
+      ]
+    },
+    "class_type": "LayerUtility: ImageBlendAdvance",
+    "_meta": {
+      "title": "混合(高级)"
+    }
+  },
+  "27": {
+    "inputs": {
+      "invert_mask": false,
+      "blend_mode": "normal",
+      "opacity": 100,
+      "x_percent": 50,
+      "y_percent": 18,
+      "mirror": "None",
+      "scale": 0.56,
+      "aspect_ratio": 1,
+      "rotate": 0,
+      "transform_method": "lanczos",
+      "anti_aliasing": 0,
+      "background_image": [
+        "64",
+        0
+      ],
+      "layer_image": [
+        "364",
+        0
+      ],
+      "layer_mask": [
+        "364",
+        1
+      ]
+    },
+    "class_type": "LayerUtility: ImageBlendAdvance",
+    "_meta": {
+      "title": "混合(高级)"
+    }
+  },
+  "32": {
+    "inputs": {
+      "vae_name": "fluxVaeSft_aeSft.sft"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "VAE加载器"
+    }
+  },
+  "33": {
+    "inputs": {
+      "model_name": "flux-dev-fp8",
+      "controlnet_path": "XLabs-flux-canny-controlnet_v3.safetensors"
+    },
+    "class_type": "LoadFluxControlNet",
+    "_meta": {
+      "title": "Flux加载ControlNet"
+    }
+  },
+  "34": {
+    "inputs": {
+      "strength": 0.8,
+      "controlnet": [
+        "33",
+        0
+      ],
+      "image": [
+        "62",
+        0
+      ]
+    },
+    "class_type": "ApplyFluxControlNet",
+    "_meta": {
+      "title": "Flux应用ControlNet"
+    }
+  },
+  "36": {
+    "inputs": {
+      "images": [
+        "62",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "37": {
+    "inputs": {
+      "strength": 1,
+      "controlnet": [
+        "38",
+        0
+      ],
+      "image": [
+        "42",
+        0
+      ]
+    },
+    "class_type": "ApplyFluxControlNet",
+    "_meta": {
+      "title": "Flux应用ControlNet"
+    }
+  },
+  "38": {
+    "inputs": {
+      "model_name": "flux-dev-fp8",
+      "controlnet_path": "XLabs-flux-depth-controlnet_v3.safetensors"
+    },
+    "class_type": "LoadFluxControlNet",
+    "_meta": {
+      "title": "Flux加载ControlNet"
+    }
+  },
+  "39": {
+    "inputs": {
+      "image": "heima_864/load_39.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "40": {
+    "inputs": {
+      "images": [
+        "42",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "41": {
+    "inputs": {
+      "model": "depth_anything_v2_vitl_fp32.safetensors",
+      "precision": "fp32"
+    },
+    "class_type": "DownloadAndLoadDepthAnythingV2Model",
+    "_meta": {
+      "title": "DownloadAndLoadDepthAnythingV2Model"
+    }
+  },
+  "42": {
+    "inputs": {
+      "da_model": [
+        "41",
+        0
+      ],
+      "images": [
+        "108",
+        0
+      ]
+    },
+    "class_type": "DepthAnything_V2",
+    "_meta": {
+      "title": "Depth Anything V2"
+    }
+  },
+  "43": {
+    "inputs": {
+      "select": 1,
+      "sel_mode": false,
+      "input1": [
+        "34",
+        0
+      ],
+      "input2": [
+        "37",
+        0
+      ]
+    },
+    "class_type": "ImpactSwitch",
+    "_meta": {
+      "title": "切换"
+    }
+  },
+  "44": {
+    "inputs": {
+      "text": "ng_deepnegative_v1_75t,(badhandv4:1.2),EasyNegative,(worst quality:2),poorly drawn hands,missing fingers,mutated hands and fingers,too many fingers,many people，",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "56",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP文本编码器"
+    }
+  },
+  "45": {
+    "inputs": {
+      "text": [
+        "336",
+        0
+      ],
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "290",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP文本编码器"
+    }
+  },
+  "46": {
+    "inputs": {
+      "guidance": 3.5,
+      "conditioning": [
+        "45",
+        0
+      ]
+    },
+    "class_type": "FluxGuidance",
+    "_meta": {
+      "title": "Flux引导"
+    }
+  },
+  "52": {
+    "inputs": {
+      "noise_seed": 210422344922917,
+      "steps": 25,
+      "timestep_to_start_cfg": 1,
+      "true_gs": 3.5,
+      "image_to_image_strength": 0,
+      "denoise_strength": 1,
+      "model": [
+        "290",
+        0
+      ],
+      "conditioning": [
+        "46",
+        0
+      ],
+      "neg_conditioning": [
+        "44",
+        0
+      ],
+      "latent_image": [
+        "302",
+        0
+      ],
+      "controlnet_condition": [
+        "43",
+        0
+      ]
+    },
+    "class_type": "XlabsSampler",
+    "_meta": {
+      "title": "XLabs采样器"
+    }
+  },
+  "53": {
+    "inputs": {
+      "rgthree_comparer": {
+        "images": [
+          {
+            "name": "A",
+            "selected": true,
+            "url": "/api/view?filename=rgthree.compare._temp_ajklk_00001_.png&type=temp&subfolder=&rand=0.09037723080973414"
+          },
+          {
+            "name": "B",
+            "selected": true,
+            "url": "/api/view?filename=rgthree.compare._temp_ajklk_00002_.png&type=temp&subfolder=&rand=0.8407701303834043"
+          }
+        ]
+      },
+      "image_a": [
+        "54",
+        0
+      ],
+      "image_b": [
+        "108",
+        0
+      ]
+    },
+    "class_type": "Image Comparer (rgthree)",
+    "_meta": {
+      "title": "图像对比"
+    }
+  },
+  "54": {
+    "inputs": {
+      "samples": [
+        "52",
+        0
+      ],
+      "vae": [
+        "32",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE解码"
+    }
+  },
+  "56": {
+    "inputs": {
+      "clip_name1": "clip_l.safetensors",
+      "clip_name2": "t5xxl_fp8_e4m3fn.safetensors",
+      "type": "flux",
+      "device": "default"
+    },
+    "class_type": "DualCLIPLoader",
+    "_meta": {
+      "title": "双CLIP加载器"
+    }
+  },
+  "60": {
+    "inputs": {
+      "aspect_ratio": "9:16",
+      "proportional_width": 9,
+      "proportional_height": 16,
+      "fit": "fill",
+      "method": "lanczos",
+      "round_to_multiple": "8",
+      "scale_to_side": "longest",
+      "scale_to_length": 1536,
+      "background_color": "#000000",
+      "image": [
+        "338",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: ImageScaleByAspectRatio V2",
+    "_meta": {
+      "title": "按宽高比缩放_V2"
+    }
+  },
+  "62": {
+    "inputs": {
+      "low_threshold": 100,
+      "high_threshold": 200,
+      "resolution": 1536,
+      "image": [
+        "108",
+        0
+      ]
+    },
+    "class_type": "CannyEdgePreprocessor",
+    "_meta": {
+      "title": "Canny细致线预处理器"
+    }
+  },
+  "63": {
+    "inputs": {
+      "prompt": "high quality portrait, detailed face, sharp features，",
+      "upscale_factor": 2,
+      "seed": 717254458234015,
+      "model_name": "HYPIR_sd2",
+      "base_model_path": "stable-diffusion-2-1-base",
+      "model_t": 200,
+      "coeff_t": 100,
+      "lora_rank": 256,
+      "patch_size": 512,
+      "encode_patch_size": 512,
+      "decode_patch_size": 512,
+      "batch_size": 1,
+      "unload_model_after": false,
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "image": [
+        "60",
+        0
+      ]
+    },
+    "class_type": "HYPIRAdvancedRestoration",
+    "_meta": {
+      "title": "HYPIR Advanced Restoration"
+    }
+  },
+  "64": {
+    "inputs": {
+      "max_width": 864,
+      "max_height": 1536,
+      "min_width": 0,
+      "min_height": 0,
+      "crop_if_required": "no",
+      "images": [
+        "63",
+        0
+      ]
+    },
+    "class_type": "ConstrainImage|pysssss",
+    "_meta": {
+      "title": "限制图像区域"
+    }
+  },
+  "107": {
+    "inputs": {
+      "image": "heima_864/load_107.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "108": {
+    "inputs": {
+      "select": [
+        "162",
+        2
+      ],
+      "sel_mode": false,
+      "input1": [
+        "107",
+        0
+      ],
+      "input2": [
+        "39",
+        0
+      ],
+      "input3": [
+        "116",
+        0
+      ],
+      "input4": [
+        "119",
+        0
+      ],
+      "input5": [
+        "121",
+        0
+      ],
+      "input6": [
+        "126",
+        0
+      ],
+      "input7": [
+        "128",
+        0
+      ],
+      "input8": [
+        "129",
+        0
+      ],
+      "input9": [
+        "130",
+        0
+      ],
+      "input10": [
+        "131",
+        0
+      ],
+      "input11": [
+        "143",
+        0
+      ],
+      "input12": [
+        "145",
+        0
+      ],
+      "input13": [
+        "146",
+        0
+      ],
+      "input14": [
+        "147",
+        0
+      ],
+      "input15": [
+        "148",
+        0
+      ]
+    },
+    "class_type": "ImpactSwitch",
+    "_meta": {
+      "title": "切换"
+    }
+  },
+  "109": {
+    "inputs": {
+      "select": [
+        "162",
+        2
+      ],
+      "sel_mode": false,
+      "input1": [
+        "17",
+        0
+      ],
+      "input2": [
+        "112",
+        0
+      ],
+      "input3": [
+        "115",
+        0
+      ],
+      "input4": [
+        "118",
+        0
+      ],
+      "input5": [
+        "123",
+        0
+      ],
+      "input6": [
+        "136",
+        0
+      ],
+      "input7": [
+        "137",
+        0
+      ],
+      "input8": [
+        "138",
+        0
+      ],
+      "input9": [
+        "139",
+        0
+      ],
+      "input10": [
+        "140",
+        0
+      ],
+      "input11": [
+        "153",
+        0
+      ],
+      "input12": [
+        "154",
+        0
+      ],
+      "input13": [
+        "155",
+        0
+      ],
+      "input14": [
+        "156",
+        0
+      ],
+      "input15": [
+        "157",
+        0
+      ]
+    },
+    "class_type": "ImpactSwitch",
+    "_meta": {
+      "title": "切换"
+    }
+  },
+  "111": {
+    "inputs": {
+      "select": [
+        "162",
+        2
+      ],
+      "sel_mode": false,
+      "input1": [
+        "17",
+        1
+      ],
+      "input2": [
+        "112",
+        1
+      ],
+      "input3": [
+        "115",
+        1
+      ],
+      "input4": [
+        "118",
+        1
+      ],
+      "input5": [
+        "123",
+        1
+      ],
+      "input6": [
+        "136",
+        1
+      ],
+      "input7": [
+        "137",
+        1
+      ],
+      "input8": [
+        "138",
+        1
+      ],
+      "input9": [
+        "139",
+        1
+      ],
+      "input10": [
+        "140",
+        1
+      ],
+      "input11": [
+        "153",
+        1
+      ],
+      "input12": [
+        "154",
+        1
+      ],
+      "input13": [
+        "155",
+        1
+      ],
+      "input14": [
+        "156",
+        1
+      ],
+      "input15": [
+        "157",
+        1
+      ]
+    },
+    "class_type": "ImpactSwitch",
+    "_meta": {
+      "title": "切换"
+    }
+  },
+  "112": {
+    "inputs": {
+      "image": "heima_864/load_112.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "115": {
+    "inputs": {
+      "image": "heima_864/load_115.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "116": {
+    "inputs": {
+      "image": "heima_864/load_116.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "118": {
+    "inputs": {
+      "image": "heima_864/load_118.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "119": {
+    "inputs": {
+      "image": "heima_864/load_119.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "121": {
+    "inputs": {
+      "image": "heima_864/load_121.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "123": {
+    "inputs": {
+      "image": "heima_864/load_123.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "126": {
+    "inputs": {
+      "image": "heima_864/load_126.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "128": {
+    "inputs": {
+      "image": "heima_864/load_128.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "129": {
+    "inputs": {
+      "image": "heima_864/load_129.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "130": {
+    "inputs": {
+      "image": "heima_864/load_130.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "131": {
+    "inputs": {
+      "image": "heima_864/load_131.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "136": {
+    "inputs": {
+      "image": "heima_864/load_136.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "137": {
+    "inputs": {
+      "image": "heima_864/load_137.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "138": {
+    "inputs": {
+      "image": "heima_864/load_138.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "139": {
+    "inputs": {
+      "image": "heima_864/load_139.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "140": {
+    "inputs": {
+      "image": "heima_864/load_140.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "143": {
+    "inputs": {
+      "image": "heima_864/load_143.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "145": {
+    "inputs": {
+      "image": "heima_864/load_145.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "146": {
+    "inputs": {
+      "image": "heima_864/load_146.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "147": {
+    "inputs": {
+      "image": "heima_864/load_147.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "148": {
+    "inputs": {
+      "image": "heima_864/load_148.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "153": {
+    "inputs": {
+      "image": "heima_864/load_153.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "154": {
+    "inputs": {
+      "image": "heima_864/load_154.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "155": {
+    "inputs": {
+      "image": "heima_864/load_155.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "156": {
+    "inputs": {
+      "image": "heima_864/load_156.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "157": {
+    "inputs": {
+      "image": "heima_864/load_157.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "162": {
+    "inputs": {
+      "number_type": "integer",
+      "minimum": 1,
+      "maximum": 15,
+      "seed": 854011806607130
+    },
+    "class_type": "Random Number",
+    "_meta": {
+      "title": "随机数"
+    }
+  },
+  "168": {
+    "inputs": {
+      "text": "JDLip",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "JjkText",
+    "_meta": {
+      "title": "Text"
+    }
+  },
+  "170": {
+    "inputs": {
+      "select": [
+        "162",
+        2
+      ],
+      "sel_mode": false,
+      "input1": [
+        "171",
+        0
+      ],
+      "input2": [
+        "172",
+        0
+      ],
+      "input3": [
+        "173",
+        0
+      ],
+      "input4": [
+        "174",
+        0
+      ],
+      "input5": [
+        "175",
+        0
+      ],
+      "input6": [
+        "176",
+        0
+      ],
+      "input7": [
+        "178",
+        0
+      ],
+      "input8": [
+        "179",
+        0
+      ],
+      "input9": [
+        "180",
+        0
+      ],
+      "input10": [
+        "181",
+        0
+      ],
+      "input11": [
+        "182",
+        0
+      ],
+      "input12": [
+        "183",
+        0
+      ],
+      "input13": [
+        "184",
+        0
+      ],
+      "input14": [
+        "185",
+        0
+      ],
+      "input15": [
+        "186",
+        0
+      ]
+    },
+    "class_type": "ImpactSwitch",
+    "_meta": {
+      "title": "切换"
+    }
+  },
+  "171": {
+    "inputs": {
+      "text": "一个穿着红色外套、灰色裤子的卡通男孩站立姿势，双手抱着一个棕色快递纸箱",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "JjkText",
+    "_meta": {
+      "title": "1"
+    }
+  },
+  "172": {
+    "inputs": {
+      "text": "一个穿着红色外套、灰色裤子的卡通男孩站立姿势，双手托腮",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "JjkText",
+    "_meta": {
+      "title": "2"
+    }
+  },
+  "173": {
+    "inputs": {
+      "text": "一个穿着红色外套、灰色裤子的卡通男孩站立姿势，双手抱着一个棕色快递纸箱",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "JjkText",
+    "_meta": {
+      "title": "3"
+    }
+  },
+  "174": {
+    "inputs": {
+      "text": "一个穿着红色外套、灰色裤子的卡通男孩站立姿势，左手抬起挥手致意",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "JjkText",
+    "_meta": {
+      "title": "4"
+    }
+  },
+  "175": {
+    "inputs": {
+      "text": "一个穿着红色外套、灰色裤子的卡通男孩站立姿势，右手竖起大拇指",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "JjkText",
+    "_meta": {
+      "title": "5"
+    }
+  },
+  "176": {
+    "inputs": {
+      "text": "一个穿着红色外套、灰色裤子的卡通男孩双手抱着一个棕色快递纸箱，正在向前行走",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "JjkText",
+    "_meta": {
+      "title": "6"
+    }
+  },
+  "178": {
+    "inputs": {
+      "text": "一个穿着红色外套、灰色裤子的卡通男孩站立姿势,他左手竖起大拇指，右手拿着一个棕色纸箱",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "JjkText",
+    "_meta": {
+      "title": "7"
+    }
+  },
+  "179": {
+    "inputs": {
+      "text": "一个穿着红色外套、灰色裤子的卡通男孩,他右手向前伸展，左手叉腰",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "JjkText",
+    "_meta": {
+      "title": "8"
+    }
+  },
+  "180": {
+    "inputs": {
+      "text": "一个穿着红色外套、灰色裤子的卡通男孩,右手高举握拳，左手自然摆动，双腿呈奔跑姿态",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "JjkText",
+    "_meta": {
+      "title": "9"
+    }
+  },
+  "181": {
+    "inputs": {
+      "text": "一个穿着红色外套、灰色裤子的卡通男孩,右手高举挥手，左手握拳，双腿呈跳跃姿态",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "JjkText",
+    "_meta": {
+      "title": "10"
+    }
+  },
+  "182": {
+    "inputs": {
+      "text": "一个穿着红色外套、灰色裤子的卡通男孩，正在道路上向前奔跑",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "JjkText",
+    "_meta": {
+      "title": "11"
+    }
+  },
+  "183": {
+    "inputs": {
+      "text": "一个穿着红色外套、灰色裤子的卡通男孩,右手高举挥手，左手握拳，双腿呈跳跃姿态,旁边有两个叠放在一起的棕色快递纸箱",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "JjkText",
+    "_meta": {
+      "title": "12"
+    }
+  },
+  "184": {
+    "inputs": {
+      "text": "一个穿着红色外套、灰色裤子的卡通男孩站立姿势，身旁叠放着两个棕色纸箱子",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "JjkText",
+    "_meta": {
+      "title": "13"
+    }
+  },
+  "185": {
+    "inputs": {
+      "text": "一个穿着红色外套、灰色裤子的卡通男孩双手托腮，站在两个棕色纸箱子后面",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "JjkText",
+    "_meta": {
+      "title": "14"
+    }
+  },
+  "186": {
+    "inputs": {
+      "text": "一个穿着红色外套、灰色裤子的卡通男孩,双臂张开，双腿分开，仿佛在跳跃",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "JjkText",
+    "_meta": {
+      "title": "15"
+    }
+  },
+  "187": {
+    "inputs": {
+      "text": [
+        "248",
+        0
+      ]
+    },
+    "class_type": "ShowText|pysssss",
+    "_meta": {
+      "title": "展示文本"
+    }
+  },
+  "195": {
+    "inputs": {
+      "text": "极高分辨率，超级高分辨率，壁纸。",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "JjkText",
+    "_meta": {
+      "title": "语句"
+    }
+  },
+  "196": {
+    "inputs": {
+      "text": "{{ROW_BACKGROUND_PROMPT}}",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "JjkText",
+    "_meta": {
+      "title": "采纳后背景提示词"
+    }
+  },
+  "202": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "20",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "保存图像"
+    }
+  },
+  "206": {
+    "inputs": {
+      "text": "许多",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "JjkText",
+    "_meta": {
+      "title": "Text"
+    }
+  },
+  "207": {
+    "inputs": {
+      "text": "红包",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "JjkText",
+    "_meta": {
+      "title": "元素输入1"
+    }
+  },
+  "209": {
+    "inputs": {
+      "text": "金币",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "JjkText",
+    "_meta": {
+      "title": "元素输入2"
+    }
+  },
+  "211": {
+    "inputs": {
+      "text": "漂浮在人物四周",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "JjkText",
+    "_meta": {
+      "title": "Text"
+    }
+  },
+  "226": {
+    "inputs": {
+      "text": "纯黑色干净背景上没有任何文字和装饰，白色文字占画布三分之二面积，字体排成两排，字体设计 “",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "JjkText",
+    "_meta": {
+      "title": "Text"
+    }
+  },
+  "227": {
+    "inputs": {
+      "text": "{{ROW_TITLE}}",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "JjkText",
+    "_meta": {
+      "title": "标题输入"
+    }
+  },
+  "230": {
+    "inputs": {
+      "number_type": "integer",
+      "minimum": 1,
+      "maximum": 5,
+      "seed": 749992857499014
+    },
+    "class_type": "Random Number",
+    "_meta": {
+      "title": "随机数"
+    }
+  },
+  "235": {
+    "inputs": {
+      "separator": ",",
+      "prompt1": [
+        "168",
+        0
+      ],
+      "prompt2": [
+        "170",
+        0
+      ]
+    },
+    "class_type": "easy promptConcat",
+    "_meta": {
+      "title": "提示词联结"
+    }
+  },
+  "241": {
+    "inputs": {
+      "separator": "",
+      "prompt1": [
+        "226",
+        0
+      ],
+      "prompt2": [
+        "227",
+        0
+      ]
+    },
+    "class_type": "easy promptConcat",
+    "_meta": {
+      "title": "提示词联结"
+    }
+  },
+  "242": {
+    "inputs": {
+      "separator": "",
+      "prompt1": [
+        "244",
+        0
+      ],
+      "prompt2": [
+        "211",
+        0
+      ]
+    },
+    "class_type": "easy promptConcat",
+    "_meta": {
+      "title": "提示词联结"
+    }
+  },
+  "243": {
+    "inputs": {
+      "separator": "",
+      "prompt1": [
+        "206",
+        0
+      ],
+      "prompt2": [
+        "207",
+        0
+      ]
+    },
+    "class_type": "easy promptConcat",
+    "_meta": {
+      "title": "提示词联结"
+    }
+  },
+  "244": {
+    "inputs": {
+      "separator": "",
+      "prompt1": [
+        "243",
+        0
+      ],
+      "prompt2": [
+        "209",
+        0
+      ]
+    },
+    "class_type": "easy promptConcat",
+    "_meta": {
+      "title": "提示词联结"
+    }
+  },
+  "245": {
+    "inputs": {
+      "separator": ",",
+      "prompt1": [
+        "235",
+        0
+      ],
+      "prompt2": [
+        "242",
+        0
+      ]
+    },
+    "class_type": "easy promptConcat",
+    "_meta": {
+      "title": "提示词联结"
+    }
+  },
+  "247": {
+    "inputs": {
+      "separator": "",
+      "prompt1": [
+        "245",
+        0
+      ],
+      "prompt2": [
+        "196",
+        0
+      ]
+    },
+    "class_type": "easy promptConcat",
+    "_meta": {
+      "title": "提示词联结"
+    }
+  },
+  "248": {
+    "inputs": {
+      "separator": ",",
+      "prompt1": [
+        "247",
+        0
+      ],
+      "prompt2": [
+        "195",
+        0
+      ]
+    },
+    "class_type": "easy promptConcat",
+    "_meta": {
+      "title": "提示词联结"
+    }
+  },
+  "288": {
+    "inputs": {
+      "separator": "",
+      "prompt1": [
+        "241",
+        0
+      ],
+      "prompt2": [
+        "359",
+        0
+      ]
+    },
+    "class_type": "easy promptConcat",
+    "_meta": {
+      "title": "提示词联结"
+    }
+  },
+  "290": {
+    "inputs": {
+      "lora_name": "JDLip.safetensors",
+      "strength_model": 1,
+      "strength_clip": 1,
+      "prompt": "",
+      "example": "[none]",
+      "model": [
+        "293",
+        0
+      ],
+      "clip": [
+        "56",
+        0
+      ]
+    },
+    "class_type": "LoraLoader|pysssss",
+    "_meta": {
+      "title": "LoRA加载器(pysss)"
+    }
+  },
+  "293": {
+    "inputs": {
+      "unet_name": "Flux/flux1-dev-fp8.safetensors",
+      "weight_dtype": "fp8_e4m3fn"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "UNET加载器"
+    }
+  },
+  "302": {
+    "inputs": {
+      "width": 864,
+      "height": 1536,
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "空Latent"
+    }
+  },
+  "305": {
+    "inputs": {
+      "text": [
+        "336",
+        0
+      ]
+    },
+    "class_type": "ShowText|pysssss",
+    "_meta": {
+      "title": "展示文本"
+    }
+  },
+  "314": {
+    "inputs": {
+      "text": [
+        "288",
+        0
+      ]
+    },
+    "class_type": "ShowText|pysssss",
+    "_meta": {
+      "title": "展示文本"
+    }
+  },
+  "327": {
+    "inputs": {
+      "images": [
+        "27",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "328": {
+    "inputs": {
+      "images": [
+        "16",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "334": {
+    "inputs": {
+      "prompt": [
+        "288",
+        0
+      ],
+      "account": "账号1",
+      "model": "4.0",
+      "resolution": "2k",
+      "ratio": "16:9",
+      "seed": 201703381481838,
+      "num_images": 1,
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "Jimeng_Image",
+    "_meta": {
+      "title": "即梦AI生图"
+    }
+  },
+  "336": {
+    "inputs": {
+      "api_baseurl": "https://api.deepseek.com",
+      "api_key": "sk-7dc39d1ab75346f094f2757e9769ba18",
+      "model": "deepseek-v4-flash",
+      "role": "帮我将中文提示词翻译为英文提示词",
+      "prompt": [
+        "248",
+        0
+      ],
+      "temperature": 0.6,
+      "seed": 84,
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "RH_LLMAPI_NODE",
+    "_meta": {
+      "title": "deepseek_API"
+    }
+  },
+  "338": {
+    "inputs": {
+      "invert_mask": true,
+      "blend_mode": "normal",
+      "opacity": 100,
+      "start_color": "#0060ff",
+      "start_alpha": 255,
+      "end_color": "#ff0000",
+      "end_alpha": 255,
+      "angle": 0,
+      "background_image": [
+        "54",
+        0
+      ],
+      "layer_image": [
+        "365",
+        0
+      ],
+      "layer_mask": [
+        "365",
+        1
+      ]
+    },
+    "class_type": "LayerStyle: GradientOverlay V2",
+    "_meta": {
+      "title": "渐变覆盖 V2"
+    }
+  },
+  "340": {
+    "inputs": {
+      "images": [
+        "334",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "341": {
+    "inputs": {
+      "upscale_method": "nearest-exact",
+      "width": 1536,
+      "height": 864,
+      "crop": "disabled",
+      "image": [
+        "362",
+        0
+      ]
+    },
+    "class_type": "ImageScale",
+    "_meta": {
+      "title": "图像缩放"
+    }
+  },
+  "342": {
+    "inputs": {
+      "width": 1536,
+      "height": 864,
+      "keep_proportions": false,
+      "upscale_method": "nearest-exact",
+      "crop": "disabled",
+      "mask": [
+        "362",
+        1
+      ]
+    },
+    "class_type": "ResizeMask",
+    "_meta": {
+      "title": "缩放遮罩"
+    }
+  },
+  "343": {
+    "inputs": {
+      "invert_mask": true,
+      "blend_mode": "normal",
+      "opacity": 100,
+      "stroke_grow": -10,
+      "stroke_width": 20,
+      "blur": 0,
+      "stroke_color": [
+        "344",
+        0
+      ],
+      "background_image": [
+        "341",
+        0
+      ],
+      "layer_image": [
+        "341",
+        0
+      ],
+      "layer_mask": [
+        "342",
+        0
+      ]
+    },
+    "class_type": "LayerStyle: Stroke V2",
+    "_meta": {
+      "title": "描边 V2"
+    }
+  },
+  "344": {
+    "inputs": {
+      "color": "#9e0000",
+      "mode": "HEX"
+    },
+    "class_type": "LayerUtility: ColorPicker",
+    "_meta": {
+      "title": "取色器"
+    }
+  },
+  "345": {
+    "inputs": {
+      "color": "#ff3232",
+      "mode": "HEX"
+    },
+    "class_type": "LayerUtility: ColorPicker",
+    "_meta": {
+      "title": "取色器"
+    }
+  },
+  "346": {
+    "inputs": {
+      "images": [
+        "363",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "347": {
+    "inputs": {
+      "invert_mask": true,
+      "blend_mode": "normal",
+      "opacity": 100,
+      "stroke_grow": -20,
+      "stroke_width": 40,
+      "blur": 0,
+      "stroke_color": [
+        "345",
+        0
+      ],
+      "background_image": [
+        "343",
+        0
+      ],
+      "layer_image": [
+        "363",
+        0
+      ],
+      "layer_mask": [
+        "363",
+        1
+      ]
+    },
+    "class_type": "LayerStyle: Stroke V2",
+    "_meta": {
+      "title": "描边 V2"
+    }
+  },
+  "348": {
+    "inputs": {
+      "images": [
+        "364",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "349": {
+    "inputs": {
+      "images": [
+        "362",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "354": {
+    "inputs": {
+      "text": "” ，创意字体设计，字体是纯白色，增加纸飞机相关元素，中式涂鸦风格，卡哇伊艺术，日式字体，线条流畅，动感，活力，兴奋。高级感，纯黑色背景，白色字体",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "Text Multiline",
+    "_meta": {
+      "title": "多行文本"
+    }
+  },
+  "355": {
+    "inputs": {
+      "text": "” ，矢量插画风格，标志，创意字体logo，流畅的线条富有艺术感，设计灵感-采用充满童趣的涂鸦风格，线条随意，让字体充满天真和快乐。高级感，扁平化，纯黑色背景，白色字",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "Text Multiline",
+    "_meta": {
+      "title": "多行文本"
+    }
+  },
+  "356": {
+    "inputs": {
+      "text": "“，点缀笔划，穿插在字体笔画中，可爱体矢量插画，标志，创意字体设计Logo，线条流畅且富有艺术感，设计灵感：将字体进行抽象变形，创造出独特的节奏和动感，扁平化",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "Text Multiline",
+    "_meta": {
+      "title": "多行文本"
+    }
+  },
+  "357": {
+    "inputs": {
+      "text": "” ，采用了创意手写风格字体，笔画形态夸张且富有变化，笔画粗细对比强烈，且有不规则的连笔、断点、弯曲和延展，呈现出随性、自由、活泼的视觉感受，打破了常规字体的规整性",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "Text Multiline",
+    "_meta": {
+      "title": "多行文本"
+    }
+  },
+  "358": {
+    "inputs": {
+      "text": "生成潮流派对风格艺术字体，模拟真实手写笔触，字体笔画粗厚醒目，形态夸张变形，部分笔画带俏皮弧度或独特弯折，添加简约表情符号等趣味小元素。以白色字体呈现于黑色背景上，可添加几何图形作装饰元素，营造活泼、肆意、充满活力的派对氛围",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      }
+    },
+    "class_type": "Text Multiline",
+    "_meta": {
+      "title": "多行文本"
+    }
+  },
+  "359": {
+    "inputs": {
+      "select": [
+        "230",
+        2
+      ],
+      "sel_mode": false,
+      "input1": [
+        "356",
+        0
+      ],
+      "input2": [
+        "354",
+        0
+      ],
+      "input3": [
+        "355",
+        0
+      ],
+      "input4": [
+        "357",
+        0
+      ],
+      "input5": [
+        "358",
+        0
+      ]
+    },
+    "class_type": "ImpactSwitch",
+    "_meta": {
+      "title": "切换"
+    }
+  },
+  "362": {
+    "inputs": {
+      "model": "RMBG-2.0",
+      "sensitivity": 1,
+      "process_res": 1024,
+      "mask_blur": 0,
+      "mask_offset": 0,
+      "invert_output": false,
+      "refine_foreground": false,
+      "background": "Alpha",
+      "background_color": "#222222",
+      "image": [
+        "334",
+        0
+      ]
+    },
+    "class_type": "RMBG",
+    "_meta": {
+      "title": "去除背景 (RMBG)"
+    }
+  },
+  "363": {
+    "inputs": {
+      "model": "RMBG-2.0",
+      "sensitivity": 1,
+      "process_res": 1024,
+      "mask_blur": 0,
+      "mask_offset": 0,
+      "invert_output": false,
+      "refine_foreground": false,
+      "background": "Alpha",
+      "background_color": "#222222",
+      "image": [
+        "343",
+        0
+      ]
+    },
+    "class_type": "RMBG",
+    "_meta": {
+      "title": "去除背景 (RMBG)"
+    }
+  },
+  "364": {
+    "inputs": {
+      "model": "RMBG-2.0",
+      "sensitivity": 1,
+      "process_res": 1024,
+      "mask_blur": 0,
+      "mask_offset": 0,
+      "invert_output": false,
+      "refine_foreground": false,
+      "background": "Alpha",
+      "background_color": "#222222",
+      "image": [
+        "347",
+        0
+      ]
+    },
+    "class_type": "RMBG",
+    "_meta": {
+      "title": "去除背景 (RMBG)"
+    }
+  },
+  "365": {
+    "inputs": {
+      "image": "heima_864/load_365.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  }
+}
