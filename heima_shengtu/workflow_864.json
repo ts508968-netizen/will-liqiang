@@ -2169,7 +2169,7 @@
       "height": 1536,
       "crop": "disabled",
       "image": [
-        "901365",
+        "365",
         0
       ]
     },
@@ -2186,8 +2186,8 @@
       "upscale_method": "lanczos",
       "crop": "disabled",
       "mask": [
-        "901366",
-        0
+        "365",
+        1
       ]
     },
     "class_type": "ResizeMask",
