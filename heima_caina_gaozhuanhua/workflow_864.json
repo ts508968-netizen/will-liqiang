@@ -2025,7 +2025,7 @@
     "inputs": {
       "model": "RMBG-2.0",
       "sensitivity": 1,
-      "process_res": 1024,
+      "process_res": 768,
       "mask_blur": 0,
       "mask_offset": 0,
       "invert_output": false,
@@ -2046,7 +2046,7 @@
     "inputs": {
       "model": "RMBG-2.0",
       "sensitivity": 1,
-      "process_res": 1024,
+      "process_res": 768,
       "mask_blur": 0,
       "mask_offset": 0,
       "invert_output": false,
@@ -2067,7 +2067,7 @@
     "inputs": {
       "model": "RMBG-2.0",
       "sensitivity": 1,
-      "process_res": 1024,
+      "process_res": 768,
       "mask_blur": 0,
       "mask_offset": 0,
       "invert_output": false,
