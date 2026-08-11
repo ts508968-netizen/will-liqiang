@@ -209,7 +209,7 @@
   "41": {
     "inputs": {
       "model": "depth_anything_v2_vitl_fp32.safetensors",
-      "precision": "fp32"
+      "precision": "fp16"
     },
     "class_type": "DownloadAndLoadDepthAnythingV2Model",
     "_meta": {
