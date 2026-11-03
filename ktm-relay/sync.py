@@ -106,6 +106,7 @@ def main():
     password = os.environ["KTM_PASSWORD"]
     relay_url = os.environ["KTM_RELAY_URL"].rstrip("/") + "/subscription"
     write_token = os.environ["KTM_WRITE_TOKEN"]
+    read_token = os.environ["KTM_READ_TOKEN"]
     body = build_config(fetch_subscription(email, password))
     try:
         status, _ = request(
@@ -126,7 +127,14 @@ def main():
         raise RuntimeError("relay rejected update") from None
     if status != 200:
         raise RuntimeError("relay rejected update")
+    status, readback = request(
+        relay_url + "?key=" + urllib.parse.quote(read_token, safe=""),
+        headers={"User-Agent": "Clash.Meta"},
+    )
+    if status != 200 or b"Auto-Foreign" not in readback:
+        raise RuntimeError("relay readback failed")
     print("relay_update_ok=True")
+    print("relay_readback_ok=True")
 
 
 if __name__ == "__main__":
