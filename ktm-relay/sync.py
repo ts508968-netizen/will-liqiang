@@ -115,10 +115,14 @@ def main():
             headers={
                 "Authorization": f"Bearer {write_token}",
                 "Content-Type": "text/yaml",
+                "User-Agent": "Mozilla/5.0 KTM-subscription-sync",
             },
         )
     except urllib.error.HTTPError as error:
+        detail = error.read(160).decode("utf-8", "replace")
+        detail = " ".join(detail.split())[:160]
         print(f"relay_update_status={error.code}")
+        print(f"relay_update_detail={detail!r}")
         raise RuntimeError("relay rejected update") from None
     if status != 200:
         raise RuntimeError("relay rejected update")
