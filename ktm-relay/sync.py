@@ -5,6 +5,7 @@ import sys
 import urllib.error
 import urllib.parse
 import urllib.request
+from pathlib import Path
 
 import yaml
 
@@ -107,6 +108,8 @@ def main():
     relay_url = os.environ["KTM_RELAY_URL"].rstrip("/") + "/subscription"
     write_token = os.environ["KTM_WRITE_TOKEN"]
     read_token = os.environ["KTM_READ_TOKEN"]
+    pages_dir = os.environ.get("PAGES_OUTPUT_DIR", "")
+    pages_key = os.environ.get("PAGES_FILE_KEY", "")
     body = build_config(fetch_subscription(email, password))
     try:
         status, _ = request(
@@ -133,6 +136,14 @@ def main():
     )
     if status != 200 or b"Auto-Foreign" not in readback:
         raise RuntimeError("relay readback failed")
+    if pages_dir:
+        if not re.fullmatch(r"[A-Za-z0-9_-]{32,128}", pages_key):
+            raise ValueError("invalid Pages file key")
+        destination = Path(pages_dir)
+        destination.mkdir(parents=True, exist_ok=True)
+        (destination / f"{pages_key}.yaml").write_bytes(body)
+        (destination / "index.html").write_text("OK\n", encoding="utf-8")
+        print("pages_artifact_ok=True")
     print("relay_update_ok=True")
     print("relay_readback_ok=True")
 
