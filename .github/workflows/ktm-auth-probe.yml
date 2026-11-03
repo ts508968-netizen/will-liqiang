@@ -1,0 +1,94 @@
+name: KTM authentication probe
+
+on:
+  push:
+    branches:
+      - codex/ktm-connectivity-probe
+    paths:
+      - .github/workflows/ktm-auth-probe.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    env:
+      KTM_EMAIL: ${{ secrets.KTM_EMAIL }}
+      KTM_PASSWORD: ${{ secrets.KTM_PASSWORD }}
+    steps:
+      - name: Check login and subscription retrieval without logging credentials
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import sys
+          import urllib.error
+          import urllib.parse
+          import urllib.request
+
+          email = os.environ.get("KTM_EMAIL", "")
+          password = os.environ.get("KTM_PASSWORD", "")
+          if not email or not password:
+              print("Missing KTM_EMAIL or KTM_PASSWORD Actions secret")
+              sys.exit(1)
+
+          def request(url, *, data=None, headers=None, limit=1048576):
+              req = urllib.request.Request(url, data=data, headers=headers or {})
+              try:
+                  with urllib.request.urlopen(req, timeout=20) as response:
+                      return response.status, response.headers, response.read(limit)
+              except urllib.error.HTTPError as error:
+                  return error.code, error.headers, error.read(min(limit, 4096))
+
+          success = False
+          for host in ("ktm01.com", "ktmcloud.cc"):
+              try:
+                  payload = urllib.parse.urlencode(
+                      {"email": email, "password": password}
+                  ).encode()
+                  status, headers, body = request(
+                      f"https://{host}/api/v1/passport/auth/login",
+                      data=payload,
+                      headers={
+                          "Content-Type": "application/x-www-form-urlencoded",
+                          "User-Agent": "Mozilla/5.0",
+                      },
+                  )
+                  challenged = headers.get("cf-mitigated", "").lower() == "challenge"
+                  if challenged or status != 200:
+                      print(f"{host}: login_status={status}, challenge={challenged}")
+                      continue
+                  auth_data = json.loads(body).get("data", {}).get("auth_data")
+                  if not isinstance(auth_data, str) or not auth_data:
+                      print(f"{host}: login_response_invalid")
+                      continue
+                  status, headers, body = request(
+                      f"https://{host}/api/v1/user/getSubscribe",
+                      headers={"Authorization": auth_data, "User-Agent": "Mozilla/5.0"},
+                  )
+                  if status != 200:
+                      print(f"{host}: subscription_api_status={status}")
+                      continue
+                  subscription_url = json.loads(body).get("data", {}).get("subscribe_url")
+                  if not isinstance(subscription_url, str) or not subscription_url.startswith("https://"):
+                      print(f"{host}: subscription_url_missing")
+                      continue
+                  status, headers, body = request(
+                      subscription_url,
+                      headers={"User-Agent": "Clash.Meta"},
+                  )
+                  looks_clash = b"proxies:" in body
+                  print(f"{host}: login_ok=True, subscription_status={status}, clash_yaml={looks_clash}")
+                  success = status == 200 and looks_clash
+                  if success:
+                      break
+              except Exception as error:
+                  print(f"{host}: request_error={type(error).__name__}")
+
+          if not success:
+              sys.exit(1)
+          PY
