@@ -19,8 +19,10 @@ DOMESTIC = re.compile(
 )
 
 
-def request(url, *, data=None, headers=None, limit=2_000_000):
-    req = urllib.request.Request(url, data=data, headers=headers or {})
+def request(url, *, data=None, headers=None, method=None, limit=2_000_000):
+    req = urllib.request.Request(
+        url, data=data, headers=headers or {}, method=method
+    )
     with urllib.request.urlopen(req, timeout=25) as response:
         body = response.read(limit + 1)
         if len(body) > limit:
@@ -109,6 +111,7 @@ def main():
         status, _ = request(
             relay_url,
             data=body,
+        method="PUT",
             headers={
                 "Authorization": f"Bearer {write_token}",
                 "Content-Type": "text/yaml",
