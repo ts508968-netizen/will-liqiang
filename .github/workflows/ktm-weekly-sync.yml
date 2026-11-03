@@ -23,6 +23,7 @@ jobs:
       KTM_EMAIL: ${{ secrets.KTM_EMAIL }}
       KTM_PASSWORD: ${{ secrets.KTM_PASSWORD }}
       KTM_WRITE_TOKEN: ${{ secrets.KTM_WRITE_TOKEN }}
+      KTM_READ_TOKEN: ${{ secrets.KTM_READ_TOKEN }}
       KTM_RELAY_URL: https://ktm-subscription-relay.ts508968.workers.dev
     steps:
       - uses: actions/checkout@v4
