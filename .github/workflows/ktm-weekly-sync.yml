@@ -1,0 +1,33 @@
+name: KTM weekly subscription sync
+
+on:
+  push:
+    branches:
+      - codex/ktm-connectivity-probe
+    paths:
+      - .github/workflows/ktm-weekly-sync.yml
+      - ktm-relay/sync.py
+  workflow_dispatch:
+  schedule:
+    # Mondays 10:17 Asia/Shanghai (UTC+8)
+    - cron: '17 2 * * 1'
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      KTM_EMAIL: ${{ secrets.KTM_EMAIL }}
+      KTM_PASSWORD: ${{ secrets.KTM_PASSWORD }}
+      KTM_WRITE_TOKEN: ${{ secrets.KTM_WRITE_TOKEN }}
+      KTM_READ_TOKEN: ${{ secrets.KTM_READ_TOKEN }}
+      KTM_RELAY_URL: https://ktm-subscription-relay.ts508968.workers.dev
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install YAML parser
+        run: python3 -m pip install --quiet PyYAML==6.0.2
+      - name: Refresh filtered subscription
+        run: python3 ktm-relay/sync.py

@@ -1,0 +1,94 @@
+name: KTM connectivity probe
+
+on:
+  push:
+    branches:
+      - codex/ktm-connectivity-probe
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Check unauthenticated KTM API reachability
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          import urllib.error
+          import urllib.request
+
+          hosts = (
+              "ktmcloud01.vip",
+              "ktmcloud.top",
+              "ktm.ooo",
+              "ktm01.com",
+              "ktmcloud.cfd",
+              "ktmcloud.app",
+              "ktmcloud.co",
+              "ktmcloud.cc",
+          )
+          for host in hosts:
+              url = f"https://{host}/api/v1/user/getSubscribe"
+              request = urllib.request.Request(
+                  url,
+                  headers={"User-Agent": "Mozilla/5.0 KTM-connectivity-probe"},
+              )
+              try:
+                  with urllib.request.urlopen(request, timeout=12) as response:
+                      status = response.status
+                      headers = response.headers
+              except urllib.error.HTTPError as error:
+                  status = error.code
+                  headers = error.headers
+              except Exception as error:
+                  print(f"{host}: network_error={type(error).__name__}")
+                  continue
+
+              challenged = headers.get("cf-mitigated", "").lower() == "challenge"
+              content_type = headers.get_content_type()
+              print(
+                  f"{host}: status={status} "
+                  f"cf_mitigated_challenge={challenged} "
+                  f"content_type={content_type}"
+              )
+
+          for host in ("ktm01.com", "ktmcloud.cc"):
+              request = urllib.request.Request(
+                  f"https://{host}/api/v1/passport/auth/login",
+                  data=b"email=&password=",
+                  headers={
+                      "Content-Type": "application/x-www-form-urlencoded",
+                      "User-Agent": "Mozilla/5.0 KTM-connectivity-probe",
+                  },
+                  method="POST",
+              )
+              try:
+                  with urllib.request.urlopen(request, timeout=12) as response:
+                      status = response.status
+                      headers = response.headers
+                      body = response.read(512)
+              except urllib.error.HTTPError as error:
+                  status = error.code
+                  headers = error.headers
+                  body = error.read(512)
+              except Exception as error:
+                  print(f"{host} login_api: network_error={type(error).__name__}")
+                  continue
+
+              try:
+                  parsed = json.loads(body)
+                  message = str(parsed.get("message", ""))[:120]
+              except (ValueError, AttributeError):
+                  message = "non_json_response"
+              print(
+                  f"{host} login_api: status={status} "
+                  f"cf_mitigated_challenge="
+                  f"{headers.get('cf-mitigated', '').lower() == 'challenge'} "
+                  f"message={message!r}"
+              )
+          PY
