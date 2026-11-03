@@ -6,6 +6,7 @@ on:
       - codex/ktm-connectivity-probe
     paths:
       - .github/workflows/ktm-weekly-sync.yml
+      - ktm-relay/sync.py
   workflow_dispatch:
   schedule:
     # Mondays 10:17 Asia/Shanghai (UTC+8)
