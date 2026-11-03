@@ -105,14 +105,18 @@ def main():
     relay_url = os.environ["KTM_RELAY_URL"].rstrip("/") + "/subscription"
     write_token = os.environ["KTM_WRITE_TOKEN"]
     body = build_config(fetch_subscription(email, password))
-    status, _ = request(
-        relay_url,
-        data=body,
-        headers={
-            "Authorization": f"Bearer {write_token}",
-            "Content-Type": "text/yaml",
-        },
-    )
+    try:
+        status, _ = request(
+            relay_url,
+            data=body,
+            headers={
+                "Authorization": f"Bearer {write_token}",
+                "Content-Type": "text/yaml",
+            },
+        )
+    except urllib.error.HTTPError as error:
+        print(f"relay_update_status={error.code}")
+        raise RuntimeError("relay rejected update") from None
     if status != 200:
         raise RuntimeError("relay rejected update")
     print("relay_update_ok=True")
