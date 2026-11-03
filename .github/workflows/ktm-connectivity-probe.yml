@@ -21,7 +21,16 @@ jobs:
           import urllib.error
           import urllib.request
 
-          hosts = ("ktmcloud01.vip", "ktmcloud.top")
+          hosts = (
+              "ktmcloud01.vip",
+              "ktmcloud.top",
+              "ktm.ooo",
+              "ktm01.com",
+              "ktmcloud.cfd",
+              "ktmcloud.app",
+              "ktmcloud.co",
+              "ktmcloud.cc",
+          )
           for host in hosts:
               url = f"https://{host}/api/v1/user/getSubscribe"
               request = urllib.request.Request(
