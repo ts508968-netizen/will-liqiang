@@ -14,6 +14,12 @@ on:
 
 permissions:
   contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: ktm-pages
+  cancel-in-progress: false
 
 jobs:
   sync:
@@ -24,6 +30,8 @@ jobs:
       KTM_PASSWORD: ${{ secrets.KTM_PASSWORD }}
       KTM_WRITE_TOKEN: ${{ secrets.KTM_WRITE_TOKEN }}
       KTM_READ_TOKEN: ${{ secrets.KTM_READ_TOKEN }}
+      PAGES_FILE_KEY: ${{ secrets.PAGES_FILE_KEY }}
+      PAGES_OUTPUT_DIR: ${{ runner.temp }}/pages
       KTM_RELAY_URL: https://ktm-subscription-relay.ts508968.workers.dev
     steps:
       - uses: actions/checkout@v4
@@ -31,3 +39,18 @@ jobs:
         run: python3 -m pip install --quiet PyYAML==6.0.2
       - name: Refresh filtered subscription
         run: python3 ktm-relay/sync.py
+      - name: Upload private subscription artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ runner.temp }}/pages
+
+  deploy-pages:
+    needs: sync
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish subscription artifact
+        id: deployment
+        uses: actions/deploy-pages@v4
