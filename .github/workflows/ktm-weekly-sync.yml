@@ -31,7 +31,7 @@ jobs:
       KTM_WRITE_TOKEN: ${{ secrets.KTM_WRITE_TOKEN }}
       KTM_READ_TOKEN: ${{ secrets.KTM_READ_TOKEN }}
       PAGES_FILE_KEY: ${{ secrets.PAGES_FILE_KEY }}
-      PAGES_OUTPUT_DIR: ${{ runner.temp }}/pages
+      PAGES_OUTPUT_DIR: /tmp/ktm-pages
       KTM_RELAY_URL: https://ktm-subscription-relay.ts508968.workers.dev
     steps:
       - uses: actions/checkout@v4
@@ -42,7 +42,7 @@ jobs:
       - name: Upload private subscription artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ${{ runner.temp }}/pages
+          path: /tmp/ktm-pages
 
   deploy-pages:
     needs: sync
